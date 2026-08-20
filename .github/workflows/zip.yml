@@ -1,0 +1,28 @@
+name: airbnb ZIP
+
+on:
+  workflow_dispatch:
+
+jobs:
+  zip-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Compress to zip files
+        run: |
+          zip airbnb-test.zip airbnb.ipynb airbnb.py airbnb_analysis.pdf
+
+      - name: Check ZIP
+        run: |
+          ls -lh airbnb-test.zip
+          unzip -l airbnb-test.zip
+
+      - name: Upload ZIP as Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: airbnb-test-archive  # Display name in GitHub UI
+          path: airbnb-test.zip       # Path to the file or directory to save
+          retention-days: 7           # Keeps file downloadable for 7 days
