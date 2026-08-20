@@ -1,4 +1,4 @@
-name: airbnb ZIP
+name: airbnb ZIP save
 
 on:
   workflow_dispatch:
